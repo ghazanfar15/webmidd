@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="htmx-config" content='{"useTemplateFragments":"true"}' />
+        <script
+            src="https://unpkg.com/htmx.org@1.9.6"
+            integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            table,
+            th,
+            tr,
+            td {
+                border-collapse: collapse;
+                border: 1px solid #808080;
+            }
+            .col {
+                display: inline-block;
+                width: 48%;
+                vertical-align: top;
+            }
+        </style>
+        <title>DataSheet</title>
+    </head>
+    <body style="margin: 10px">
+        <div class="col">
+            <form hx-get="/student/regno" hx-target="#student" hx-swap="innerHTML">
+                <div style="display: flex; padding: 6px">
+                    <div style="font-weight: bold">Reg. No :</div>
+                    <div>
+                        <input type="text" name="regno" hx-trigger="click, keydown[enterKey] from:body" placeholder="regno" />
+                    </div>
+                </div>
+                <div id="student"></div>
+            </form>
+        </div>
+        <div class="col" id="reg">Registrations</div>
+    </body>
+</html>

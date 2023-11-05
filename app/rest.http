@@ -1,0 +1,21 @@
+GET http://localhost:8001/api/students/1112101
+
+###
+GET http://localhost:8001/api/courses/semesters
+
+###
+GET http://localhost:8001/api/courses/1
+
+###
+GET http://localhost:8001/api/registrations/1112102
+
+###
+
+POST http://localhost:8001/api/courses/register HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "regno": "1112104", 
+    "semno": "1", 
+    "courseid": [ "1", "2", "3" ] 
+}

@@ -1,0 +1,42 @@
+@html.block('pReg', function(model){ @if(model.regs.length !== 0){
+
+<table>
+    <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Cr</th>
+        <th>Grade</th>
+        <th>GPA</th>
+    </tr>
+    @model.regs.forEach(function(reg){
+    <tr id="row-@reg._id">
+        <td>@reg.course.code</td>
+        <td>@reg.course.title</td>
+        <td>@reg.course.crhr</td>
+        <td>
+            <select name="gradeid" hx-post="/registration/update" hx-trigger="change" hx-target="#row-@reg._id" hx-swap="outerHTML" hx-vals='{"_id": "@reg._id"}'>
+                @(reg.gradeid === null?<option selected></option>: '')
+                
+                @model.grades.forEach(function(g){
+                <option value="@g.gradeid" @(g.gradeid === reg.gradeid ? ' selected': '') >@g.grade</option>
+                })
+            </select>
+        </td>
+        <td>
+            @(reg.gradeid !== null ? reg.grade.gpa : '')
+        </td>
+    </tr>
+    })
+    <tr>
+        <td colspan="3"></td>
+        <td>CGPA</td>
+        <td id="CGPA">@model.gpa.GPA.toFixed(2)</td>
+    </tr>
+</table>
+} })
+
+@if(model.register){
+    @model.regs.forEach(function(reg){
+        <input type="checkbox" id="cid-@reg.course.courseid" name="courseid" style="display: none;" hx-swap-oob="true"/>
+    })
+}

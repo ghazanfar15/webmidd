@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <th>Student Name :</th>
+        <td>@model.student.studentname</td>
+    </tr>
+    <tr>
+        <th>Father Name :</th>
+        <td>@model.student.fathername</td>
+    </tr>
+</table>
+
+<div style="display: flex; padding: 8px">
+    <div style="font-weight: bold">Semester :</div>
+    <div>
+        <select
+            name="semno"
+            hx-get="/semester/courses"
+            hx-trigger="change"
+            hx-target="#courses"
+            hx-swap="innerHTML"
+            hx-include="[name='regno']"
+        >
+            <option selected></option>
+            @model.semesters.forEach(function(sem){
+            <option value="@sem">@sem</option>
+            })
+        </select>
+    </div>
+</div>
+
+<div id="courses"></div>
+
+<div class="col" id="reg" hx-swap-oob="true">@html.extend('register', function(model){ @html.block('pReg') })</div>

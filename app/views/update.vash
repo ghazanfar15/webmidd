@@ -1,0 +1,21 @@
+@model.regs.forEach(function(reg){
+    <tr id="row-@reg._id">
+        <td>@reg.course.code</td>
+        <td>@reg.course.title</td>
+        <td>@reg.course.crhr</td>
+        <td>
+            <select name="gradeid" hx-post="/registration/update" hx-trigger="change" hx-target="#row-@reg._id" hx-swap="outerHTML" hx-vals='{"_id": "@reg._id"}'>
+                @(reg.gradeid === null?<option selected></option>: '')
+                
+                @model.grades.forEach(function(g){
+                <option value="@g.gradeid" @(g.gradeid === reg.gradeid ? ' selected': '') >@g.grade</option>
+                })
+            </select>
+        </td>
+        <td>
+            @(reg.gradeid !== null ? reg.grade.gpa : '')
+        </td>
+    </tr>
+})
+
+<td id="CGPA" hx-swap-oob="true">@model.gpa.GPA.toFixed(2)</td>

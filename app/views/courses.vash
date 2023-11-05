@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th></th>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Cr</th>
+    </tr>
+    @model.courses.forEach(function(course){
+    <tr>
+        <td>
+            @(course.reg == null ? <input type="checkbox" id="cid-@course.courseid" name="courseid" value="@course.courseid" /> :
+            '')
+        </td>
+        <td>@course.code</td>
+        <td>@course.title</td>
+        <td>@course.crhr</td>
+    </tr>
+    })
+</table>
+<a href="#" hx-post="/course/register" hx-trigger="click" hx-swap="innerHTML" hx-target="#reg">Register</a>
