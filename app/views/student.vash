@@ -1,4 +1,4 @@
-<table  style="background-colour:blue">
+<table  style="background-color:#FFFFE0;">
     <tr>
         <th>Student Name :</th>
         <td>@model.student.studentname</td>
